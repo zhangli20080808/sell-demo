@@ -5,6 +5,10 @@ import App from './App'
 import layout from './components/layout.vue'
 import router from './router'
 
+import axios from 'axios'
+
+Vue.prototype.$http = axios
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
