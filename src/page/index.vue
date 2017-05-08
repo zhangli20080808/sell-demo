@@ -38,6 +38,8 @@
         </div>
         <!-- 右侧 -->
         <div class="content-right col-md-9 col-xs-9">
+          <!-- slides -->
+          <slides :slides="slides" :time="slideSpeed"></slides>
           <div class="content-list">
             <div class="row">
               <div class="col-md-6">
@@ -54,10 +56,12 @@
 </template>
 
 <script>
+import slides from '@/components/slides'
 export default {
   name: 'hello',
   data () {
     return {
+      slideSpeed: 2000,
       newsList:{},
       productList: {
         pc: {
@@ -105,18 +109,44 @@ export default {
             }
           ]
         }
-      }
+      },
+      slides: [
+     {
+       src: require('../assets/slideShow/pic1.jpg'),
+       title: 'xxx1',
+       href: 'www.baidu.com'
+     },
+     {
+       src: require('../assets/slideShow/pic2.jpg'),
+       title: 'xxx2',
+       href: 'https://github.com/zhangli20080808/sell-demo'
+     },
+     {
+       src: require('../assets/slideShow/pic3.jpg'),
+       title: 'xxx3',
+       href: 'https://github.com/zhangli20080808/sell-demo'
+     },
+     {
+       src: require('../assets/slideShow/pic4.jpg'),
+       title: 'xxx4',
+       href: 'https://github.com/zhangli20080808/sell-demo'
+     }
+   ],
     }
   },
   mounted(){
-   this.$http.get('api/db.json').then((res)=>{
+   this.$http.post('api/db.json').then((res)=>{
     this.newsList = res.data.getNewsList;
     // console.log(this.newsList);
 
    }).catch((err)=>{
      console.log(err);
    })
-  }
+ },
+ components:{
+   slides
+ }
+
 }
 </script>
 
@@ -135,7 +165,6 @@ export default {
       }
     }
     .content-right{
-      background: yellow;
     }
   }
 }

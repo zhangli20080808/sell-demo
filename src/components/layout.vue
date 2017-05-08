@@ -33,7 +33,6 @@
 <style lang="less" scoped>
 	.main{
 		.content{
-			height: 900px;
 		}
 	}
 </style>
