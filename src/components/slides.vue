@@ -61,11 +61,14 @@ export default {
     }
   },
   methods:{
+    // 我们所有的切换都归结到goto
     goto(index){
       this.isshow = false;
       setTimeout(()=>{
         this.nowIndex = index
         this.isshow = true;
+        // 我们把change过后的index传给我们的自定义事件
+        this.$emit('onchange',index)
       },10)
     },
     // 创建计时器

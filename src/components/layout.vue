@@ -11,10 +11,10 @@
 			  <!-- Collect the nav links, forms, and other content for toggling -->
 			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			    <ul class="nav navbar-nav navbar-right">
-			      <li><a href="#">登录</a></li>
-			      <li><a href="#">注册</a></li>
-			      <li><a href="#">关于</a></li>
-			    </ul>
+			      <li @click="logClick"><a href="javascript:void(0)" >登录</a></li>
+			      <li @click="regClick"><a href="javascript:void(0)">注册</a></li>
+			      <li @click="aboutClick"><a href="javascript:void(0)">关于</a></li>
+ 			    </ul>
 			  </div><!-- /.navbar-collapse -->
 			</nav>
 		</div>
@@ -28,8 +28,55 @@
 		<div class="foot">
 			 <p class="text-center">© 2016 fishenal MIT</p>
 		</div>
+		<!-- about -->
+		<my-dialog :is-show="isShowAboutDialog" @on-close="closeDialog('isShowAboutDialog')">
+			 <p>about</p>
+		</my-dialog>
+
+		<my-dialog :is-show="isShowLogDialog" @on-close="closeDialog('isShowLogDialog')">
+			 <logForm></logForm>
+		</my-dialog>
+
+		<my-dialog :is-show="isShowRegDialog" @on-close="closeDialog('isShowRegDialog')">
+			 <p>reg</p>
+		</my-dialog>
 	</div>
 </template>
+<script>
+	import Dialog from './base/dialog'
+	import logForm from './login.vue'
+	export default {
+		data(){
+			return {
+				isShowAboutDialog: false,
+				 isShowLogDialog: false,
+				 isShowRegDialog: false,
+				 username: ''
+			}
+		},
+		components:{
+			myDialog: Dialog,
+			logForm
+		},
+		methods:{
+			closeDialog(){
+				this.isshowDialog =false
+			},
+			aboutClick(){
+				this.isShowAboutDialog =true
+			},
+			logClick(){
+				this.isShowLogDialog =true
+			},
+			regClick(){
+				this.isShowRegDialog =true
+			},
+			closeDialog(attr){
+				this[attr] = false
+			}
+		}
+	}
+</script>
 <style lang="less" scoped>
 	.main{
 		.content{

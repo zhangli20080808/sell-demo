@@ -39,7 +39,7 @@
         <!-- 右侧 -->
         <div class="content-right col-md-9 col-xs-9">
           <!-- slides -->
-          <slides :slides="slides" :time="slideSpeed"></slides>
+          <slides :slides="slides" :time="slideSpeed" @onchange="doSomething"></slides>
           <div class="content-list">
             <div class="row">
               <div class="col-md-6">
@@ -145,6 +145,11 @@ export default {
  },
  components:{
    slides
+ },
+ methods:{
+   doSomething(){
+    //  console.log(1); 父组件都拿到了这样一个方法的触发
+   }
  }
 
 }
