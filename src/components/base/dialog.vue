@@ -2,10 +2,10 @@
   <div class="dialog-wrap" v-if="isShow" >
     <div class="dialog-cover"  @click="closeMyself">
     </div>
-    <div class="dialog-content">
-      <p class="dialog-close">x</p>
-      <slot>empty</slot>
-    </div>
+      <div class="dialog-content animated fadeInUp">
+        <p class="dialog-close" @click="closeMyself">x</p>
+        <slot>empty</slot>
+      </div>
   </div>
 </template>
 
@@ -31,7 +31,8 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+
   .dialog-wrap{
     position: fixed;
     width: 100%;
@@ -53,11 +54,10 @@ export default {
       max-height: 50%;
       overflow: auto;
       background: #fff;
-      top: 40%;
+      top: 30%;
       left: 50%;
       margin-left: -25%;
       z-index: 10;
-      border: 2px solid #464068;
       padding: 2%;
       line-height: 1.6;
       .dialog-close{

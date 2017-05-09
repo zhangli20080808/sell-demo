@@ -41,7 +41,7 @@ export default {
   },
   mounted(){
     this.runTime();
-    console.log(this.slides);
+    // console.log(this.slides);
   },
   computed:{
     prevIndex(){

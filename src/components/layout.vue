@@ -11,8 +11,10 @@
 			  <!-- Collect the nav links, forms, and other content for toggling -->
 			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			    <ul class="nav navbar-nav navbar-right">
-			      <li @click="logClick"><a href="javascript:void(0)" >登录</a></li>
-			      <li @click="regClick"><a href="javascript:void(0)">注册</a></li>
+			      <li><a href="javascript:void(0)" >{{username}}</a></li>
+			      <li v-if="username !==''"><a href="javascript:void(0)">退出</a></li>
+			      <li @click="logClick" v-if="username ==''"><a href="javascript:void(0)" >登录</a></li>
+			      <li @click="regClick" v-if="username ==''"><a href="javascript:void(0)">注册</a></li>
 			      <li @click="aboutClick"><a href="javascript:void(0)">关于</a></li>
  			    </ul>
 			  </div><!-- /.navbar-collapse -->
@@ -34,7 +36,7 @@
 		</my-dialog>
 
 		<my-dialog :is-show="isShowLogDialog" @on-close="closeDialog('isShowLogDialog')">
-			 <logForm></logForm>
+			 <logForm @has-log="onSuccess"></logForm>
 		</my-dialog>
 
 		<my-dialog :is-show="isShowRegDialog" @on-close="closeDialog('isShowRegDialog')">
@@ -73,6 +75,12 @@
 			},
 			closeDialog(attr){
 				this[attr] = false
+			},
+			onSuccess(res){
+				// console.log(res);
+				this.closeDialog ('isShowLogDialog')
+				this.username = res.username;
+
 			}
 		}
 	}
