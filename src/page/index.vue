@@ -161,11 +161,20 @@ export default {
   .row{
     .content-left,.content-right{
       height: 1000px;
+      .panel{
+        .panel-heading{
+          background: #19B3EA;
+          .panel-title{
+            color:#fff;
+          }
+        }
+      }
       .panel-body{
         .item{
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            padding: 10px;
         }
       }
     }
