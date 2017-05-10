@@ -9,16 +9,14 @@
          <div class="panel-body">
            <div>
              <ul>
-               <li class="item" v-for="item in products">
-                {{item.name}}
-               </li>
+               <router-link v-for="item in products"  :to = "{path: item.path}" class="item" active-class="active" tag="li">{{item.name}}</router-link>
              </ul>
              <!-- <div v-if="!product.last" class="hr"></div> -->
            </div>
         </div>
        </div>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-9 detai-right">
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
@@ -63,7 +61,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" >
   #detail{
     .detai-left{
       .panel{
@@ -78,11 +76,26 @@ export default {
         .item{
           padding: 10px;
           &:hover{
-            background: #ccc;
+            background: #19B3EA;
+            color: #fff;
           }
         }
       }
 
     }
+    .detai-right{
+      padding-left: 20px;
+      .sales-board{
+        background: #fff;
+        padding: 20px 0;
+        .sales-board-intro{}
+        .sales-board-form{
+        .sales-board-line{
+          .sales-board-line-left{}
+          .sales-board-line-righ{}
+        }
+      }
+    }
   }
+}
 </style>

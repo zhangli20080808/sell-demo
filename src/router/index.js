@@ -4,6 +4,9 @@ import Index from '../page/index'
 import detail from '../page/detail'
 
 import forecast from '../page/detail/forecast'
+import analysis from '../page/detail/analysis'
+import count from '../page/detail/count'
+import publish from '../page/detail/publish.vue'
 
 
 Vue.use(Router)
@@ -17,12 +20,25 @@ export default new Router({
     {
       path: '/detail',
       component: detail,
-      children:[
-        {
-          path: 'forecast',
-          component: forecast
-        }
-      ]
+      redirect:'/detail/count',
+      children: [
+				{
+					path: 'analysis',
+					component: analysis
+				},
+				{
+					path: 'count',
+					component: count
+				},
+				{
+					path: 'forecast',
+					component: forecast
+				},
+				{
+					path: 'publish',
+					component: publish
+				}
+			]
     }
   ]
 })

@@ -114,7 +114,7 @@ export default {
      {
        src: require('../assets/slideShow/pic1.jpg'),
        title: 'xxx1',
-       href: 'www.baidu.com'
+       href: '#/detail/analysis'
      },
      {
        src: require('../assets/slideShow/pic2.jpg'),
@@ -171,10 +171,20 @@ export default {
       }
       .panel-body{
         .item{
+          a{
+            text-decoration: none;
+            &:hover{
+              color: #fff;
+            }
+          }
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             padding: 10px;
+            &:hover{
+              background: #19B3EA;
+              color: #fff;
+            }
         }
       }
     }

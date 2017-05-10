@@ -5,7 +5,9 @@
 			<nav class="navbar navbar-inverse" role="navigation">
 			  <!-- Brand and toggle get grouped for better mobile display -->
 			  <div class="navbar-header">
-			    <a class="navbar-brand" href="#">Vue_welcoming</a>
+					<router-link :to="{path: '/'}">
+						<a class="navbar-brand" >Vue_welcoming</a>
+					</router-link>
 			  </div>
 
 			  <!-- Collect the nav links, forms, and other content for toggling -->
