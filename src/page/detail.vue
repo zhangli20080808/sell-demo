@@ -90,7 +90,8 @@ export default {
         padding: 20px 0;
         .sales-board-intro{}
         .sales-board-form{
-        .sales-board-line{
+        .sales-board-line.row{
+          padding-top: 14px;
           .sales-board-line-left{}
           .sales-board-line-righ{}
         }

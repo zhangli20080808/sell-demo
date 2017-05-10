@@ -11,7 +11,7 @@
                   产品类型：
               </div>
               <div class="sales-board-line-right col-md-10">
-                  1<!-- <v-chooser :selections="buyTypes"></v-chooser> -->
+                <choose></choose>
               </div>
           </div>
           <div class="sales-board-line row">
@@ -19,7 +19,7 @@
                 适用地区：
             </div>
               <div class="sales-board-line-right col-md-10">
-                  2<!-- <v-selection :selections="districts"></v-selection> -->
+                  <selection :selections="districts" ></selection>
               </div>
           </div>
           <div class="sales-board-line row">
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import count from '@/components/base/count'
+import selection from '@/components/base/selection'
 export default {
   data(){
     return{
@@ -87,6 +89,10 @@ export default {
         },
       ]
     }
+  },
+  components: {
+    count,
+    selection
   }
 }
 </script>
