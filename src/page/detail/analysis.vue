@@ -105,6 +105,7 @@
               <backChooser @on-change="onChangeBanks"></backChooser>
             </div>
 
+            <button type="button" name="button" class="btn btn-danger" style="outline:none" @click="payConfirm">确认购买</button>
 
           </myDialog>
       </div>
@@ -254,8 +255,24 @@ export default {
       // 拿到银行id
       // console.log(obj);
       this.bankId = obj.id;
-      console.log(this.bankId);
-
+      // console.log(this.bankId);
+    },
+    payConfirm(){
+      let buyVersionArray = _.map(this.versions,(item)=>{
+        return item.value
+      })
+      let reqParams = {
+        buyNum: this.buyNum,
+        buyType: this.buyType.value,
+        period: this.period.value,
+        version: buyVersionArray.join(','),
+        bankId: this.bankId
+      }
+      this.$http.post('api/db.json',reqParams).then((res)=>{
+        // console.log(res);
+        this.bankId = res.data.createOrder.orderId;
+        console.log(this.bankId);
+      })
     }
   }
 }
