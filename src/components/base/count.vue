@@ -41,6 +41,11 @@ export default {
       this.number ++ ;
       this.$emit('on-change',this.number)
     },
+    watch: {
+      number(){
+        this.$emit('on-change',this.number)
+      }
+    },
     fixNumber(){
       let fix
        if (typeof this.number === 'string') {

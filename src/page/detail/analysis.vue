@@ -51,6 +51,56 @@
                   {{price}} 元
               </div>
           </div>
+          <div class="sales-board-line row">
+            <div class="sales-board-line-left col-md-1">
+            </div>
+              <div class="sales-board-line-right col-md-11">
+                <button type="button" name="button" class="btn btn-danger" style="outline:none" @click="showPayDialog">立即购买</button>
+              </div>
+          </div>
+
+          <div class="sales-board-des">
+            <h3>流量分析</h3>
+            <p>网站访问统计分析报告的基础数据源于网站流量统计信息，但其价值远高于原始数据资料。专业的网站访问统计分析报告对网络营销的价值，正如专业的财务分析报告对企业经营策略的价值。</p>
+
+            <h3>用户行为指标</h3>
+            <ul>
+              <li>用户行为指标主要反映用户是如何来到网站的、在网站上停留了多长时间、访问了哪些页面等，主要的统计指标包括：</li>
+              <li>用户在网站的停留时间；</li>
+              <li>用户来源网站（也叫“引导网站”）；</li>
+              <li>用户所使用的搜索引擎及其关键词；</li>
+              <li>在不同时段的用户访问量情况等。</li>
+            </ul>
+
+            <h3>浏览网站方式</h3>
+            <ul>
+              <li>用户上网设备类型</li>
+              <li>用户浏览器的名称和版本</li>
+              <li>访问者电脑分辨率显示模式</li>
+              <li>用户所使用的操作系统名称和版本</li>
+              <li>用户所在地理区域分布状况等</li>
+            </ul>
+          </div>
+
+          <myDialog :is-show="isShowPayDialog" @on-close="closeDialog('isShowPayDialog')">
+            <div class="row text-center">
+              <div class="col-md-offset-1 col-md-2">购买数量</div>
+              <div class="col-md-2">产品类型</div>
+              <div class="col-md-2">有效时间</div>
+              <div class="col-md-2">产品版本</div>
+              <div class="col-md-2">总价</div>
+            </div>
+
+            <div class="row text-center">
+              <div class="col-md-offset-1 col-md-2">{{buyNum}}</div>
+              <div class="col-md-2">{{buyType.label }}</div>
+              <div class="col-md-2">{{period.label}}</div>
+              <div class="col-md-2">
+                <span v-for="item in versions">{{ item.label }}</span>
+              </div>
+              <div class="col-md-2">{{price}}</div>
+            </div>
+          </myDialog>
       </div>
   </div>
 </template>
@@ -60,6 +110,9 @@ import count from '@/components/base/count'
 import selection from '@/components/base/selection'
 import chooser from '@/components/base/chooser'
 import mChooser from '@/components/base/multiplyChooser'
+
+import Dialog from '@/components/base/dialog'
+
 
 
 export default {
@@ -140,16 +193,19 @@ export default {
            value: 2
          }
        ],
+      isShowPayDialog: false
     }
+
   },
   components: {
     count,
     selection,
     chooser,
-    mChooser
+    mChooser,
+    myDialog: Dialog
   },
   mounted(){
-    this.buyNum = 0,
+    this.buyNum = 1,
     this.buyType = this.buyTypes[0],
     this.period = this.periodList[0],
     this.versions = [this.versionList[0]],
@@ -160,6 +216,12 @@ export default {
       this[attr] = val;
       console.log(attr,val);
       this.getPrice()
+    },
+    showPayDialog(){
+      this.isShowPayDialog = true
+    },
+    closeDialog(attr){
+      this[attr] = false
     },
     // 请求数据
     getPrice(){

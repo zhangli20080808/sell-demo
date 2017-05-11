@@ -11,7 +11,7 @@
                   产品类型：
               </div>
               <div class="sales-board-line-right col-md-10">
-                <count></count>
+                <chooser :selections="buyTypes"></chooser>
               </div>
           </div>
           <div class="sales-board-line row">
@@ -38,12 +38,28 @@
                   500 元
               </div>
           </div>
+
+          <div class="sales-board-line row">
+            <div class="sales-board-line-left col-md-1">
+            </div>
+              <div class="sales-board-line-right col-md-11">
+                <button type="button" name="button" class="btn btn-danger" style="outline:none">立即购买</button>
+              </div>
+          </div>
+
+          <div class="sales-board-des" style="padding-top:20px;">
+           <h3>数据统计</h3>
+           <p>历史资料、科学实验、检验、统计等所获得的和用于科学研究、技术设计、查证、决策等的数值加以统计为解决方案做前期准备。</p>
+         </div>
       </div>
+
+
+
   </div>
 </template>
 
 <script>
-import count from '@/components/base/count'
+import chooser from '@/components/base/chooser'
 import selection from '@/components/base/selection'
 export default {
   data(){
@@ -91,7 +107,7 @@ export default {
     }
   },
   components: {
-    count,
+    chooser,
     selection
   }
 }
