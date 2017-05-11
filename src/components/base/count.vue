@@ -26,6 +26,7 @@ export default {
       default: 1
     }
   },
+
   methods: {
     minus(){
       if(this.number<= this.min){
@@ -38,9 +39,20 @@ export default {
         return;
       }
       this.number ++ ;
+      this.$emit('on-change',this.number)
     },
     fixNumber(){
-
+      let fix
+       if (typeof this.number === 'string') {
+         fix = Number(this.number.replace(/\D/g, ''))
+       }
+       else {
+         fix = this.number
+       }
+       if (fix > this.max || fix < this.min) {
+         fix = this.min
+       }
+       this.number = fix
     }
   }
 }

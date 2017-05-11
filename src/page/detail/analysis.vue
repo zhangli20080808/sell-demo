@@ -10,7 +10,7 @@
                   购买数量：
               </div>
               <div class="sales-board-line-right col-md-10">
-                <count></count>
+                <count @on-change="onParamChange('buyNum',$event)"></count>
               </div>
           </div>
 
@@ -19,7 +19,8 @@
                 产品类型：
             </div>
               <div class="sales-board-line-right col-md-10">
-                <selection :selections="buyTypes" @on-change="onParamChange"></selection>
+                <!--我们要手动将组件传出来的东西通过event穿进去  这样我们就可以拿到通过这个事件传出来的值 -->
+                <selection :selections="buyTypes" @on-change="onParamChange('buyType',$event)"></selection>
               </div>
           </div>
 
@@ -28,9 +29,20 @@
                 有效时间：
             </div>
               <div class="sales-board-line-right col-md-10">
-              <chooser :selections="periodList"></chooser>
+              <chooser :selections="periodList" @on-change="onParamChange('period',$event)"></chooser>
               </div>
           </div>
+
+          <div class="sales-board-line row">
+            <div class="sales-board-line-left col-md-2">
+                版本类型：
+            </div>
+              <div class="sales-board-line-right col-md-10">
+              <mChooser :selections="versionList" @on-change="onParamChange('versions',$event)"></mChooser>
+              </div>
+          </div>
+
+
           <div class="sales-board-line row">
             <div class="sales-board-line-left col-md-2">
                 总价：
@@ -47,11 +59,18 @@
 import count from '@/components/base/count'
 import selection from '@/components/base/selection'
 import chooser from '@/components/base/chooser'
+import mChooser from '@/components/base/multiplyChooser'
 
 
 export default {
   data(){
     return{
+      // 记录我们传递过去的数据 4中类型
+      buyNum : 0,
+      buyType:{},
+      versions: [],
+      period: {},
+
       buyTypes: [
         {
           label: '红色版',
@@ -106,30 +125,35 @@ export default {
           value: 2
         }
       ],
-      buyTypes: [
-        {
-          label: '入门版',
-          value: 0
-        },
-        {
-          label: '中级版',
-          value: 1
-        },
-        {
-          label: '高级版',
-          value: 2
-        }]
+      versionList: [
+         {
+           label: '客户版',
+           value: 0
+         },
+         {
+           label: '代理商版',
+           value: 1
+         },
+         {
+           label: '专家版',
+           value: 2
+         }
+       ],
     }
   },
   components: {
     count,
     selection,
-    chooser
+    chooser,
+    mChooser
   },
   methods:{
     onParamChange(attr,val){
       this[attr] = val;
-
+      console.log(attr,val);
+    },
+    app(){
+      console.log(1);
     }
   }
 }

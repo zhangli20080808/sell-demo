@@ -11,7 +11,7 @@
                   产品类型：
               </div>
               <div class="sales-board-line-right col-md-10">
-                <choose></choose>
+                <count></count>
               </div>
           </div>
           <div class="sales-board-line row">
