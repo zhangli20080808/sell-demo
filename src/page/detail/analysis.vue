@@ -100,6 +100,12 @@
               </div>
               <div class="col-md-2">{{price}}</div>
             </div>
+            <div class="row">
+              <p class="text-left" style="margin-left:40px;">选择银行</p>
+              <backChooser @on-change="onChangeBanks"></backChooser>
+            </div>
+
+
           </myDialog>
       </div>
   </div>
@@ -112,6 +118,8 @@ import chooser from '@/components/base/chooser'
 import mChooser from '@/components/base/multiplyChooser'
 
 import Dialog from '@/components/base/dialog'
+import backChooser from '@/components/backChooser'
+
 
 
 
@@ -193,6 +201,8 @@ export default {
            value: 2
          }
        ],
+
+      bankId:null,
       isShowPayDialog: false
     }
 
@@ -202,7 +212,8 @@ export default {
     selection,
     chooser,
     mChooser,
-    myDialog: Dialog
+    myDialog: Dialog,
+    backChooser
   },
   mounted(){
     this.buyNum = 1,
@@ -238,6 +249,13 @@ export default {
         this.price = res.data.getPrice.amount
         // console.log(this.price);
       })
+    },
+    onChangeBanks(obj){
+      // 拿到银行id
+      // console.log(obj);
+      this.bankId = obj.id;
+      console.log(this.bankId);
+
     }
   }
 }
