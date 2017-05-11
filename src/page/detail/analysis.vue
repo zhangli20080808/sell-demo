@@ -48,7 +48,7 @@
                 总价：
             </div>
               <div class="sales-board-line-right col-md-10">
-                  500 元
+                  {{price}} 元
               </div>
           </div>
       </div>
@@ -70,6 +70,7 @@ export default {
       buyType:{},
       versions: [],
       period: {},
+      price: 0,
 
       buyTypes: [
         {
@@ -146,6 +147,13 @@ export default {
     selection,
     chooser,
     mChooser
+  },
+  mounted(){
+    this.buyNum = 0,
+    this.buyType = this.buyTypes[0],
+    this.period = this.periodList[0],
+    this.versions = [this.versionList[0]],
+    this.getPrice()
   },
   methods:{
     onParamChange(attr,val){
