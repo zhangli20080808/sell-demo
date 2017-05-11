@@ -155,7 +155,7 @@ export default {
     },
     // 请求数据
     getPrice(){
-      let buyVersionArray = _.map(this.version,(item)=>{
+      let buyVersionArray = _.map(this.versions,(item)=>{
         return item.value
       })
       let reqParams = {
@@ -164,7 +164,7 @@ export default {
         period: this.period.value,
         version: buyVersionArray.join(',')
       }
-      this.$http.get('api/db.json',reqParams).then((res)=>{
+      this.$http.post('api/db.json',reqParams).then((res)=>{
         this.price = res.data.getPrice.amount
         // console.log(this.price);
       })
