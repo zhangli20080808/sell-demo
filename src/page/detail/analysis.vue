@@ -151,9 +151,23 @@ export default {
     onParamChange(attr,val){
       this[attr] = val;
       console.log(attr,val);
+      this.getPrice()
     },
-    app(){
-      console.log(1);
+    // 请求数据
+    getPrice(){
+      let buyVersionArray = _.map(this.version,(item)=>{
+        return item.value
+      })
+      let reqParams = {
+        buyNum: this.buyNum,
+        buyType: this.buyType.value,
+        period: this.period.value,
+        version: buyVersionArray.join(',')
+      }
+      this.$http.get('api/db.json',reqParams).then((res)=>{
+        this.price = res.data.getPrice.amount
+        // console.log(this.price);
+      })
     }
   }
 }
